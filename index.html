@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure SMP | Premium Minecraft Survival</title>
+    <meta name="description" content="Join Azure SMP, a premium Minecraft survival server with custom biomes, economy, and an amazing community.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="blob-bg"></div>
+    <div class="blob-bg secondary"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-brand">
+            <span class="logo-icon">💠</span>
+            <span class="brand-text">Azure SMP</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#rules">Rules</a></li>
+            <li><a href="store.html">Store</a></li>
+        </ul>
+        <button class="btn-primary copy-ip-btn" data-ip="azuresmp.hostomi.eu">
+            <span class="btn-text">Copy IP</span>
+            <span class="btn-icon">📋</span>
+        </button>
+    </nav>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <div class="badge">🔥 Season 2 is Live!</div>
+                <h1 class="hero-title">Experience <span class="text-gradient">Shop Survival</span></h1>
+                <p class="hero-subtitle">Dive into Azure SMP, where custom player shops, a player-driven economy, and an epic survival community await you. Bedrock & Java Crossplay.</p>
+                <div class="hero-stats">
+                    <div class="stat-card glass-panel">
+                        <div class="stat-value" id="player-count">0</div>
+                        <div class="stat-label">Players Online</div>
+                    </div>
+                    <div class="stat-card glass-panel">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Uptime</div>
+                    </div>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn-primary copy-ip-btn btn-large" data-ip="azuresmp.hostomi.eu">
+                        Connect Now: azuresmp.hostomi.eu
+                    </button>
+                    <a href="#features" class="btn-secondary">Explore Features</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="features section-padding">
+            <div class="section-header">
+                <h2 class="section-title">Why Join <span class="text-gradient">Azure SMP</span>?</h2>
+                <p class="section-desc">We've crafted the ultimate shop survival experience for our players.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card glass-panel fade-in">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Custom Biomes</h3>
+                    <p>Explore gorgeous, handcrafted generated terrain without needing any client-side mods.</p>
+                </div>
+                <div class="feature-card glass-panel fade-in">
+                    <div class="feature-icon">💰</div>
+                    <h3>Player Economy</h3>
+                    <p>Trade with others, set up your own player shops, and become the richest on the server.</p>
+                </div>
+                <div class="feature-card glass-panel fade-in">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Grief Protection</h3>
+                    <p>Claim your land and protect your builds with our easy-to-use claiming system.</p>
+                </div>
+                <div class="feature-card glass-panel fade-in">
+                    <div class="feature-icon">⚔️</div>
+                    <h3>PvP Arenas</h3>
+                    <p>Test your skills against other players in dedicated, safe PvP zones.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="rules section-padding">
+            <div class="rules-container glass-panel fade-in">
+                <h2 class="section-title">Server Rules</h2>
+                <ul class="rules-list">
+                    <li><strong>No Hacking or Cheating:</strong> Use of modified clients (x-ray, kill-aura, etc.) will result in a permanent ban.</li>
+                    <li><strong>No Griefing or Stealing:</strong> Respect other players' builds and items. Use the land claim system.</li>
+                    <li><strong>Be Respectful:</strong> Harassment, hate speech, and excessive toxicity are not tolerated.</li>
+                    <li><strong>No Spamming:</strong> Keep the chat clean and readable.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="logo-icon">💠</span>
+                <span class="brand-text">Azure SMP</span>
+                <p>Not affiliated with Mojang AB.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://discord.gg/example" target="_blank" class="social-link">Discord</a>
+                <a href="store.html" class="social-link">Store</a>
+                <a href="mailto:contact@azuresmp.net" class="social-link">Contact</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Azure SMP. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">IP Copied to Clipboard!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
