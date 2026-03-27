@@ -144,6 +144,56 @@
         </div>
     </div>
 
+    <!-- Checkout Modal -->
+    <div class="checkout-overlay" id="checkout-overlay" onclick="closeCheckout()"></div>
+    <div class="checkout-modal glass-panel" id="checkout-modal">
+        <div class="checkout-header">
+            <h2>Complete Checkout</h2>
+            <button class="cart-close" onclick="closeCheckout()">&times;</button>
+        </div>
+        <div class="checkout-body">
+            <!-- Username Input -->
+            <div class="form-group">
+                <label for="mc-username">Minecraft Username</label>
+                <div class="username-input-wrapper">
+                    <img src="https://crafatar.com/avatars/8667ba71b85a4004af54457a9734eed7?size=32&overlay" alt="Steve" class="mc-avatar" id="mc-avatar">
+                    <input type="text" id="mc-username" class="form-input" placeholder="Enter your username..." oninput="updateAvatar()">
+                </div>
+            </div>
+            
+            <!-- Order Summary -->
+            <div class="order-summary">
+                <h3>Order Summary</h3>
+                <div id="checkout-items" class="checkout-items"></div>
+                <div class="checkout-total">
+                    <span>Total applied:</span>
+                    <span class="text-gradient">$<span id="checkout-total-price">0.00</span></span>
+                </div>
+            </div>
+
+            <!-- Payment Methods -->
+            <div class="payment-methods">
+                <h3>Payment Method</h3>
+                <div class="method-grid">
+                    <button class="payment-btn active" onclick="selectPayment(this)">Credit Card</button>
+                    <button class="payment-btn" onclick="selectPayment(this)">PayPal</button>
+                    <button class="payment-btn" onclick="selectPayment(this)">Crypto</button>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-footer">
+            <button class="btn-primary btn-large" style="width: 100%; justify-content: center;" onclick="confirmPurchase()">Complete Purchase</button>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal glass-panel fade-in" id="success-modal">
+        <div class="success-icon">✨</div>
+        <h2 class="text-gradient">Purchase Complete!</h2>
+        <p>Thank you for supporting Azure SMP! Your ranks will be applied in-game within 5 minutes.</p>
+        <button class="btn-secondary" style="margin-top: 1.5rem;" onclick="closeSuccess()">Back to Store</button>
+    </div>
+
     <!-- Toast Notification -->
     <div class="toast" id="toast">IP Copied to Clipboard!</div>
     <script src="script.js"></script>

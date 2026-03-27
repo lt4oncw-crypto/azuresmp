@@ -129,15 +129,109 @@ document.addEventListener('DOMContentLoaded', () => {
             updateCartUI();
         };
 
+        const checkoutModal = document.getElementById('checkout-modal');
+        const checkoutOverlay = document.getElementById('checkout-overlay');
+        const successModal = document.getElementById('success-modal');
+
         window.checkoutCart = function() {
             if (window.cart.length === 0) {
                 showToast('Your cart is empty!');
                 return;
             }
-            alert('Redirecting to Tebex/CraftingStore checkout with your items...');
-            window.cart = [];
-            updateCartUI();
+            
+            // Build the checkout items list
+            const checkoutItemsEl = document.getElementById('checkout-items');
+            const checkoutTotalEl = document.getElementById('checkout-total-price');
+            if(checkoutItemsEl && checkoutTotalEl) {
+                checkoutItemsEl.innerHTML = '';
+                let total = 0;
+                window.cart.forEach(item => {
+                    total += item.price;
+                    checkoutItemsEl.innerHTML += `
+                        <div class="checkout-item">
+                            <span>${item.name}</span>
+                            <span>$${item.price.toFixed(2)}</span>
+                        </div>
+                    `;
+                });
+                checkoutTotalEl.textContent = total.toFixed(2);
+            }
+
+            // Close cart, open checkout
             toggleCart();
+            if (checkoutModal && checkoutOverlay) {
+                checkoutModal.classList.add('active');
+                checkoutOverlay.classList.add('active');
+            }
+        };
+
+        window.closeCheckout = function() {
+            if (checkoutModal && checkoutOverlay) {
+                checkoutModal.classList.remove('active');
+                checkoutOverlay.classList.remove('active');
+            }
+        };
+
+        window.selectPayment = function(btn) {
+            document.querySelectorAll('.payment-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        };
+
+        let avatarTimeout;
+        window.updateAvatar = function() {
+            clearTimeout(avatarTimeout);
+            avatarTimeout = setTimeout(() => {
+                const username = document.getElementById('mc-username').value.trim();
+                const avatarImg = document.getElementById('mc-avatar');
+                if (username.length > 2) {
+                    avatarImg.src = `https://minotar.net/helm/${username}/32.png`;
+                } else {
+                    avatarImg.src = `https://crafatar.com/avatars/8667ba71b85a4004af54457a9734eed7?size=32&overlay`; // default Steve
+                }
+            }, 500);
+        };
+
+        window.confirmPurchase = function() {
+            const username = document.getElementById('mc-username');
+            if (!username || username.value.trim() === '') {
+                showToast('Please enter your Minecraft username!');
+                if (username) username.focus();
+                return;
+            }
+            
+            // Show loading state
+            const btn = document.querySelector('.checkout-footer .btn-primary');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = 'Processing...';
+            btn.style.opacity = '0.7';
+            btn.style.pointerEvents = 'none';
+
+            // Simulate API call
+            setTimeout(() => {
+                closeCheckout();
+                
+                // Clear cart
+                window.cart = [];
+                updateCartUI();
+                
+                // Show success
+                if (successModal && checkoutOverlay) {
+                    checkoutOverlay.classList.add('active');
+                    successModal.classList.add('active');
+                }
+                
+                // Reset button
+                btn.innerHTML = originalText;
+                btn.style.opacity = '1';
+                btn.style.pointerEvents = 'auto';
+            }, 1000);
+        };
+
+        window.closeSuccess = function() {
+            if (successModal && checkoutOverlay) {
+                successModal.classList.remove('active');
+                checkoutOverlay.classList.remove('active');
+            }
         };
 
         function updateCartUI() {
