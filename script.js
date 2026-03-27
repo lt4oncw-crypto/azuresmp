@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (username.length > 2) {
                     avatarImg.src = `https://minotar.net/helm/${username}/32.png`;
                 } else {
-                    avatarImg.src = `https://crafatar.com/avatars/8667ba71b85a4004af54457a9734eed7?size=32&overlay`; // default Steve
+                    avatarImg.src = `https://minotar.net/helm/MHF_Steve/32.png`; // default Steve
                 }
             }, 500);
         };
