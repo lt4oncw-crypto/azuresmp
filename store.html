@@ -52,10 +52,16 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="store.html" style="color: var(--azure-light);">Store</a></li>
         </ul>
-        <button class="btn-primary copy-ip-btn" data-ip="azuresmp.hostomi.eu">
-            <span class="btn-text">Copy IP</span>
-            <span class="btn-icon">📋</span>
-        </button>
+        <div class="nav-actions" style="display: flex; gap: 1rem; align-items: center;">
+            <button class="btn-secondary cart-toggle-btn" onclick="toggleCart()">
+                <span class="btn-icon">🛒</span>
+                <span class="cart-badge" id="cart-badge">0</span>
+            </button>
+            <button class="btn-primary copy-ip-btn" data-ip="azuresmp.hostomi.eu">
+                <span class="btn-text">Copy IP</span>
+                <span class="btn-icon">📋</span>
+            </button>
+        </div>
     </nav>
 
     <main class="section-padding">
@@ -74,7 +80,7 @@
                     <li>3x Home set limit</li>
                     <li>Priority Queue</li>
                 </ul>
-                <button class="btn-primary buy-btn" onclick="alert('This would redirect to Tebex/CraftingStore checkout!');">Purchase VIP</button>
+                <button class="btn-primary buy-btn" onclick="addToCart('VIP Rank', 9.99);">Add to Cart</button>
             </div>
             
             <div class="rank-card glass-panel fade-in" style="border-top-color: var(--azure-main); transform: scale(1.05); z-index: 1;">
@@ -87,7 +93,7 @@
                     <li>Access to /fly in claims</li>
                     <li>Colored chat messages</li>
                 </ul>
-                <button class="btn-primary buy-btn" onclick="alert('This would redirect to Tebex/CraftingStore checkout!');">Purchase MVP</button>
+                <button class="btn-primary buy-btn" onclick="addToCart('MVP Rank', 19.99);">Add to Cart</button>
             </div>
 
             <div class="rank-card glass-panel fade-in">
@@ -99,7 +105,7 @@
                     <li>Infinite Homes</li>
                     <li>Custom monthly cosmetic</li>
                 </ul>
-                <button class="btn-primary buy-btn" onclick="alert('This would redirect to Tebex/CraftingStore checkout!');">Purchase Azure</button>
+                <button class="btn-primary buy-btn" onclick="addToCart('Azure Rank', 39.99);">Add to Cart</button>
             </div>
         </div>
     </main>
@@ -121,6 +127,22 @@
             <p>&copy; <script>document.write(new Date().getFullYear())</script> Azure SMP. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar glass-panel" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="cart-close" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Items will be injected here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">Total: $<span id="cart-total-price">0.00</span></div>
+            <button class="btn-primary buy-btn" style="width: 100%; margin-top: 1rem;" onclick="checkoutCart()">Checkout</button>
+        </div>
+    </div>
 
     <!-- Toast Notification -->
     <div class="toast" id="toast">IP Copied to Clipboard!</div>

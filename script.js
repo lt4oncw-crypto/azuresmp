@@ -99,4 +99,83 @@ document.addEventListener('DOMContentLoaded', () => {
     fadeElements.forEach(el => {
         observer.observe(el);
     });
+
+    // 5. Shopping Cart Functionality
+    const cartSidebar = document.getElementById('cart-sidebar');
+    const cartOverlay = document.getElementById('cart-overlay');
+    if (cartSidebar && cartOverlay) {
+        window.cart = [];
+        
+        window.toggleCart = function() {
+            cartSidebar.classList.toggle('active');
+            cartOverlay.classList.toggle('active');
+        };
+
+        window.addToCart = function(name, price) {
+            window.cart.push({ id: Date.now(), name, price });
+            updateCartUI();
+            showToast(`${name} added to cart!`);
+            
+            // Pop animation on badge
+            const badge = document.getElementById('cart-badge');
+            if(badge) {
+                badge.style.transform = 'scale(1.5)';
+                setTimeout(() => badge.style.transform = 'scale(1)', 200);
+            }
+        };
+
+        window.removeFromCart = function(id) {
+            window.cart = window.cart.filter(item => item.id !== id);
+            updateCartUI();
+        };
+
+        window.checkoutCart = function() {
+            if (window.cart.length === 0) {
+                showToast('Your cart is empty!');
+                return;
+            }
+            alert('Redirecting to Tebex/CraftingStore checkout with your items...');
+            window.cart = [];
+            updateCartUI();
+            toggleCart();
+        };
+
+        function updateCartUI() {
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartTotalEl = document.getElementById('cart-total-price');
+            const cartBadgeEl = document.getElementById('cart-badge');
+            
+            if(!cartItemsEl) return;
+
+            let total = 0;
+            cartItemsEl.innerHTML = '';
+            
+            if (window.cart.length === 0) {
+                cartItemsEl.innerHTML = '<p class="empty-cart-msg">Your cart is empty.</p>';
+            } else {
+                window.cart.forEach(item => {
+                    total += item.price;
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'cart-item';
+                    itemEl.innerHTML = `
+                        <div class="cart-item-info">
+                            <h4>${item.name}</h4>
+                            <p>$${item.price.toFixed(2)}</p>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart(${item.id})">&times;</button>
+                    `;
+                    cartItemsEl.appendChild(itemEl);
+                });
+            }
+
+            if(cartTotalEl) cartTotalEl.textContent = total.toFixed(2);
+            if(cartBadgeEl) cartBadgeEl.textContent = window.cart.length;
+            
+            // hide badge if 0
+            if(cartBadgeEl) cartBadgeEl.style.display = window.cart.length > 0 ? 'flex' : 'none';
+        }
+        
+        // Render initial empty cart
+        updateCartUI();
+    }
 });
