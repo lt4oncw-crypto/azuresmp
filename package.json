@@ -1,0 +1,9 @@
+{
+  "name": "nexumsmp",
+  "version": "1.0.0",
+  "description": "Nexum SMP Minecraft Server Store",
+  "main": "script.js",
+  "dependencies": {
+    "stripe": "^14.0.0"
+  }
+}

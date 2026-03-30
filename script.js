@@ -167,22 +167,30 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Initialize Stripe Elements
             if (stripe) {
-                // In a real app, you'd fetch a clientSecret from your server here
-                // For this demonstration, we'll simulate the appearance
-                const appearance = { theme: 'night', variables: { colorPrimary: '#38bdf8' } };
-                
-                // Note: Payment Element usually requires a clientSecret.
-                // We'll use a dummy setup or explain the requirement.
-                const options = {
-                    mode: 'payment',
-                    amount: Math.round(total * 100),
-                    currency: 'usd',
-                    appearance,
-                };
+                // Fetch Client Secret from Backend
+                try {
+                    const response = await fetch('/.netlify/functions/create-payment-intent', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ amount: total, items: window.cart }),
+                    });
+                    
+                    const { clientSecret, error: backendError } = await response.json();
+                    if (backendError) {
+                        showToast(`Backend Error: ${backendError}`);
+                        return;
+                    }
 
-                elements = stripe.elements(options);
-                const paymentElement = elements.create('payment');
-                paymentElement.mount('#payment-element');
+                    const appearance = { theme: 'night', variables: { colorPrimary: '#38bdf8' } };
+                    const options = { clientSecret, appearance };
+                    elements = stripe.elements(options);
+                    const paymentElement = elements.create('payment');
+                    paymentElement.mount('#payment-element');
+                } catch (e) {
+                    console.error("Failed to connect to payment backend:", e);
+                    showToast("Payment system is offline. Please try again later.");
+                    return;
+                }
             }
 
             // Close cart, open checkout
@@ -234,20 +242,27 @@ document.addEventListener('DOMContentLoaded', () => {
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
 
-            // If Stripe is active, trigger confirmation
+            // If Stripe is active, trigger real confirmation
             if (stripe && elements) {
-                // In a real implementation:
-                // const {error} = await stripe.confirmPayment({
-                //   elements,
-                //   confirmParams: { return_url: window.location.href + "?success=true" },
-                // });
-                
-                // For demo purposes, we'll simulate the Stripe response
-                setTimeout(() => {
-                    handleSuccess();
-                }, 2000);
+                const { error } = await stripe.confirmPayment({
+                    elements,
+                    confirmParams: {
+                        return_url: window.location.origin + window.location.pathname + "?success=true",
+                        shipping: {
+                            name: username.value,
+                            address: { line1: 'Minecraft Server', country: 'US' } // placeholder
+                        }
+                    },
+                });
+
+                if (error) {
+                    showToast(error.message);
+                    btn.innerHTML = originalText;
+                    btn.style.opacity = '1';
+                    btn.style.pointerEvents = 'auto';
+                }
             } else {
-                // Fallback for mock flow
+                // Fallback for mock flow (if stripe fails to load)
                 setTimeout(() => {
                     handleSuccess();
                 }, 1000);
