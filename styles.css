@@ -3,10 +3,10 @@
     --bg-color: #05050f;
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
-    --azure-main: #0ea5e9;
-    --azure-light: #38bdf8;
-    --azure-dark: #0284c7;
-    --azure-glow: rgba(14, 165, 233, 0.4);
+    --nexum-main: #0ea5e9;
+    --nexum-light: #38bdf8;
+    --nexum-dark: #0284c7;
+    --nexum-glow: rgba(14, 165, 233, 0.4);
     
     /* Glassmorphism */
     --glass-bg: rgba(255, 255, 255, 0.03);
@@ -46,7 +46,7 @@ body {
     width: 60vw;
     height: 60vw;
     border-radius: 50%;
-    background: radial-gradient(circle, var(--azure-glow) 0%, rgba(5,5,15,0) 70%);
+    background: radial-gradient(circle, var(--nexum-glow) 0%, rgba(5,5,15,0) 70%);
     filter: blur(80px);
     z-index: -1;
     animation: float 20s infinite alternate ease-in-out;
@@ -76,7 +76,7 @@ h1, h2, h3, h4 {
 }
 
 .text-gradient {
-    background: linear-gradient(135deg, #e0f2fe, var(--azure-main));
+    background: linear-gradient(135deg, #e0f2fe, var(--nexum-main));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -144,7 +144,7 @@ h1, h2, h3, h4 {
 }
 
 .nav-links a:hover {
-    color: var(--azure-light);
+    color: var(--nexum-light);
 }
 
 /* Buttons */
@@ -164,15 +164,15 @@ h1, h2, h3, h4 {
 }
 
 .btn-primary {
-    background: var(--azure-main);
+    background: var(--nexum-main);
     color: #fff;
-    box-shadow: 0 4px 15px var(--azure-glow);
+    box-shadow: 0 4px 15px var(--nexum-glow);
 }
 
 .btn-primary:hover {
-    background: var(--azure-light);
+    background: var(--nexum-light);
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px var(--azure-glow);
+    box-shadow: 0 6px 20px var(--nexum-glow);
 }
 
 .btn-secondary {
@@ -218,7 +218,7 @@ h1, h2, h3, h4 {
     border-radius: 50px;
     font-size: 0.9rem;
     font-weight: 600;
-    color: var(--azure-light);
+    color: var(--nexum-light);
     animation: slideDown 0.8s ease-out forwards;
     opacity: 0;
 }
@@ -255,7 +255,7 @@ h1, h2, h3, h4 {
     font-family: var(--font-heading);
     font-size: 2rem;
     font-weight: 800;
-    color: var(--azure-light);
+    color: var(--nexum-light);
     transition: transform 0.2s ease;
 }
 
@@ -389,7 +389,7 @@ h1, h2, h3, h4 {
 }
 
 .social-link:hover {
-    color: var(--azure-light);
+    color: var(--nexum-light);
 }
 
 .footer-bottom {
@@ -405,12 +405,12 @@ h1, h2, h3, h4 {
     bottom: -100px;
     left: 50%;
     transform: translateX(-50%);
-    background: var(--azure-main);
+    background: var(--nexum-main);
     color: white;
     padding: 1rem 2rem;
     border-radius: 50px;
     font-weight: 600;
-    box-shadow: 0 4px 15px var(--azure-glow);
+    box-shadow: 0 4px 15px var(--nexum-glow);
     transition: var(--transition-smooth);
     z-index: 9999;
 }
@@ -452,7 +452,7 @@ h1, h2, h3, h4 {
     position: absolute;
     top: -5px;
     right: -5px;
-    background: var(--azure-main);
+    background: var(--nexum-main);
     color: white;
     font-size: 0.8rem;
     font-weight: bold;
@@ -523,7 +523,7 @@ h1, h2, h3, h4 {
 }
 
 .cart-close:hover {
-    color: var(--azure-light);
+    color: var(--nexum-light);
     transform: scale(1.1);
 }
 
@@ -552,7 +552,7 @@ h1, h2, h3, h4 {
 }
 
 .cart-item-info p {
-    color: var(--azure-light);
+    color: var(--nexum-light);
     font-weight: 600;
 }
 
@@ -675,7 +675,7 @@ h1, h2, h3, h4 {
 }
 
 .username-input-wrapper:focus-within {
-    border-color: var(--azure-main);
+    border-color: var(--nexum-main);
 }
 
 .mc-avatar {
@@ -764,8 +764,8 @@ h1, h2, h3, h4 {
 
 .payment-btn.active {
     background: rgba(14, 165, 233, 0.1);
-    border-color: var(--azure-main);
-    color: var(--azure-light);
+    border-color: var(--nexum-main);
+    color: var(--nexum-light);
 }
 
 .checkout-footer {
@@ -811,7 +811,7 @@ h1, h2, h3, h4 {
 }
 
 #payment-message {
-    color: var(--azure-light);
+    color: var(--nexum-light);
     font-size: 0.9rem;
     margin-top: 1rem;
     text-align: center;

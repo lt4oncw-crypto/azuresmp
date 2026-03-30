@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         setTimeout(() => {
             playerCountEl.style.transform = 'scale(1)';
-            playerCountEl.style.color = 'var(--azure-light)';
+            playerCountEl.style.color = 'var(--nexum-light)';
         }, 200);
         
     }, 5000);

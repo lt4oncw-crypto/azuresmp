@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azure SMP | Support the Server</title>
+    <title>Nexum SMP | Support the Server</title>
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -31,12 +31,12 @@
             flex-direction: column;
             justify-content: space-between;
         }
-        .rank-card:hover { border-color: var(--azure-main); }
+        .rank-card:hover { border-color: var(--nexum-main); }
         .rank-title { font-size: 2rem; margin-bottom: 1rem; }
-        .rank-price { font-size: 2.5rem; font-family: var(--font-heading); font-weight: 800; color: var(--azure-light); margin-bottom: 1.5rem; }
+        .rank-price { font-size: 2.5rem; font-family: var(--font-heading); font-weight: 800; color: var(--nexum-light); margin-bottom: 1.5rem; }
         .rank-features { list-style: none; margin-bottom: 2rem; color: var(--text-secondary); text-align: left; }
         .rank-features li { margin-bottom: 0.8rem; padding-bottom: 0.8rem; border-bottom: 1px solid var(--glass-border); }
-        .rank-features li::before { content: "✓ "; color: var(--azure-light); font-weight: bold; }
+        .rank-features li::before { content: "✓ "; color: var(--nexum-light); font-weight: bold; }
         .buy-btn { width: 100%; justify-content: center; }
     </style>
 </head>
@@ -47,18 +47,18 @@
     <nav class="navbar scrolled" id="navbar">
         <div class="nav-brand" onclick="window.location.href='index.html'">
             <span class="logo-icon">💠</span>
-            <span class="brand-text">Azure SMP</span>
+            <span class="brand-text">Nexum SMP</span>
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="store.html" style="color: var(--azure-light);">Store</a></li>
+            <li><a href="store.html" style="color: var(--nexum-light);">Store</a></li>
         </ul>
         <div class="nav-actions" style="display: flex; gap: 1rem; align-items: center;">
             <button class="btn-secondary cart-toggle-btn" onclick="toggleCart()">
                 <span class="btn-icon">🛒</span>
                 <span class="cart-badge" id="cart-badge">0</span>
             </button>
-            <button class="btn-primary copy-ip-btn" data-ip="azuresmp.hostomi.eu">
+            <button class="btn-primary copy-ip-btn" data-ip="nexumxmp.hostomi.eu">
                 <span class="btn-text">Copy IP</span>
                 <span class="btn-icon">📋</span>
             </button>
@@ -68,7 +68,7 @@
     <main class="section-padding">
         <div class="store-hero fade-in">
             <h1 class="hero-title">Official <span class="text-gradient">Server Store</span></h1>
-            <p class="section-desc">Support Azure SMP by purchasing ranks, keys, and cosmetics. Thank you!</p>
+            <p class="section-desc">Support Nexum SMP by purchasing ranks, keys, and cosmetics. Thank you!</p>
         </div>
 
         <div class="store-grid">
@@ -84,7 +84,7 @@
                 <button class="btn-primary buy-btn" onclick="addToCart('VIP Rank', 9.99);">Add to Cart</button>
             </div>
             
-            <div class="rank-card glass-panel fade-in" style="border-top-color: var(--azure-main); transform: scale(1.05); z-index: 1;">
+            <div class="rank-card glass-panel fade-in" style="border-top-color: var(--nexum-main); transform: scale(1.05); z-index: 1;">
                 <div class="badge" style="margin: 0 auto 1rem; display: inline-block;">Most Popular</div>
                 <h3 class="rank-title text-gradient">MVP Rank</h3>
                 <div class="rank-price">$19.99</div>
@@ -98,15 +98,15 @@
             </div>
 
             <div class="rank-card glass-panel fade-in">
-                <h3 class="rank-title">Azure Rank</h3>
+                <h3 class="rank-title">Nexum Rank</h3>
                 <div class="rank-price">$39.99</div>
                 <ul class="rank-features">
-                    <li>Exclusive [AZURE] Prefix</li>
+                    <li>Exclusive [NEXUM] Prefix</li>
                     <li>All MVP Perks included</li>
                     <li>Infinite Homes</li>
                     <li>Custom monthly cosmetic</li>
                 </ul>
-                <button class="btn-primary buy-btn" onclick="addToCart('Azure Rank', 39.99);">Add to Cart</button>
+                <button class="btn-primary buy-btn" onclick="addToCart('Nexum Rank', 39.99);">Add to Cart</button>
             </div>
         </div>
     </main>
@@ -115,17 +115,17 @@
         <div class="footer-content">
             <div class="footer-brand">
                 <span class="logo-icon">💠</span>
-                <span class="brand-text">Azure SMP</span>
+                <span class="brand-text">Nexum SMP</span>
                 <p>Not affiliated with Mojang AB.</p>
             </div>
             <div class="footer-links">
                 <a href="https://discord.gg/example" target="_blank" class="social-link">Discord</a>
                 <a href="store.html" class="social-link">Store</a>
-                <a href="mailto:contact@azuresmp.net" class="social-link">Contact</a>
+                <a href="mailto:contact@nexumsmp.net" class="social-link">Contact</a>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; <script>document.write(new Date().getFullYear())</script> Azure SMP. All rights reserved.</p>
+            <p>&copy; <script>document.write(new Date().getFullYear())</script> Nexum SMP. All rights reserved.</p>
         </div>
     </footer>
 
@@ -190,7 +190,7 @@
     <div class="success-modal glass-panel" id="success-modal">
         <div class="success-icon">✨</div>
         <h2 class="text-gradient">Purchase Complete!</h2>
-        <p>Thank you for supporting Azure SMP! Your ranks will be applied in-game within 5 minutes.</p>
+        <p>Thank you for supporting Nexum SMP! Your ranks will be applied in-game within 5 minutes.</p>
         <button class="btn-secondary" style="margin-top: 1.5rem;" onclick="closeSuccess()">Back to Store</button>
     </div>
 
