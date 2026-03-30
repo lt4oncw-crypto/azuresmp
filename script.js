@@ -133,7 +133,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const checkoutOverlay = document.getElementById('checkout-overlay');
         const successModal = document.getElementById('success-modal');
 
-        window.checkoutCart = function() {
+        // Stripe Initialization (Mock Public Key)
+        let stripe, elements;
+        try {
+            stripe = Stripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
+        } catch (e) {
+            console.error("Stripe failed to load. Make sure you are online.");
+        }
+
+        window.checkoutCart = async function() {
             if (window.cart.length === 0) {
                 showToast('Your cart is empty!');
                 return;
@@ -142,9 +150,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Build the checkout items list
             const checkoutItemsEl = document.getElementById('checkout-items');
             const checkoutTotalEl = document.getElementById('checkout-total-price');
+            let total = 0;
             if(checkoutItemsEl && checkoutTotalEl) {
                 checkoutItemsEl.innerHTML = '';
-                let total = 0;
                 window.cart.forEach(item => {
                     total += item.price;
                     checkoutItemsEl.innerHTML += `
@@ -155,6 +163,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                 });
                 checkoutTotalEl.textContent = total.toFixed(2);
+            }
+
+            // Initialize Stripe Elements
+            if (stripe) {
+                // In a real app, you'd fetch a clientSecret from your server here
+                // For this demonstration, we'll simulate the appearance
+                const appearance = { theme: 'night', variables: { colorPrimary: '#38bdf8' } };
+                
+                // Note: Payment Element usually requires a clientSecret.
+                // We'll use a dummy setup or explain the requirement.
+                const options = {
+                    mode: 'payment',
+                    amount: Math.round(total * 100),
+                    currency: 'usd',
+                    appearance,
+                };
+
+                elements = stripe.elements(options);
+                const paymentElement = elements.create('payment');
+                paymentElement.mount('#payment-element');
             }
 
             // Close cart, open checkout
@@ -191,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 500);
         };
 
-        window.confirmPurchase = function() {
+        window.confirmPurchase = async function() {
             const username = document.getElementById('mc-username');
             if (!username || username.value.trim() === '') {
                 showToast('Please enter your Minecraft username!');
@@ -202,29 +230,43 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show loading state
             const btn = document.querySelector('.checkout-footer .btn-primary');
             const originalText = btn.innerHTML;
-            btn.innerHTML = 'Processing...';
+            btn.innerHTML = '<span class="loader"></span> Processing...';
             btn.style.opacity = '0.7';
             btn.style.pointerEvents = 'none';
 
-            // Simulate API call
-            setTimeout(() => {
-                closeCheckout();
+            // If Stripe is active, trigger confirmation
+            if (stripe && elements) {
+                // In a real implementation:
+                // const {error} = await stripe.confirmPayment({
+                //   elements,
+                //   confirmParams: { return_url: window.location.href + "?success=true" },
+                // });
                 
-                // Clear cart
+                // For demo purposes, we'll simulate the Stripe response
+                setTimeout(() => {
+                    handleSuccess();
+                }, 2000);
+            } else {
+                // Fallback for mock flow
+                setTimeout(() => {
+                    handleSuccess();
+                }, 1000);
+            }
+
+            function handleSuccess() {
+                closeCheckout();
                 window.cart = [];
                 updateCartUI();
                 
-                // Show success
                 if (successModal && checkoutOverlay) {
                     checkoutOverlay.classList.add('active');
                     successModal.classList.add('active');
                 }
                 
-                // Reset button
                 btn.innerHTML = originalText;
                 btn.style.opacity = '1';
                 btn.style.pointerEvents = 'auto';
-            }, 1000);
+            }
         };
 
         window.closeSuccess = function() {
@@ -269,7 +311,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if(cartBadgeEl) cartBadgeEl.style.display = window.cart.length > 0 ? 'flex' : 'none';
         }
         
-        // Render initial empty cart
-        updateCartUI();
+        // Check for redirect success
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('success') === 'true') {
+            setTimeout(() => {
+                if (successModal && checkoutOverlay) {
+                    checkoutOverlay.classList.add('active');
+                    successModal.classList.add('active');
+                }
+                // Clean up URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }, 500);
+        }
     }
 });

@@ -802,6 +802,38 @@ h1, h2, h3, h4 {
     display: inline-block;
 }
 
+/* Payment & Loader */
+.hidden { display: none; }
+
+#payment-element {
+    margin-bottom: 1.5rem;
+    min-height: 250px;
+}
+
+#payment-message {
+    color: var(--azure-light);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.loader {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #fff;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    margin-right: 0.5rem;
+}
+
+@keyframes rotation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
